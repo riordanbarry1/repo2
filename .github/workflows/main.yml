@@ -17,7 +17,7 @@ jobs:
           python-version: '3.9'
 
       - name: Run Python script and create text file
-        run: python python_script.py
+        run: python my_script.py
 
       - name: Archive text file as an artifact
         uses: actions/upload-artifact@v2
