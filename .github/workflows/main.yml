@@ -34,6 +34,12 @@ jobs:
       - name: Download text file artifact
         uses: actions/download-artifact@v2
         with:
+          name: my-text-artifact  # Match the artifact name
+
+      - name: Display text file content
+        run: cat my-text-artifact/output.txt
+
+        with:
           name: my-text-artifact
 
       - name: Display text file content
