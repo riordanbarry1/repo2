@@ -10,12 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-    - run: python - c "print(f'{env.GLOBAL_MESSAGE}')"
-      
+    - name: run bash
+     
+    - run: echo ${{env.GLOBAL_MESSAGE}}
+    
   greet:
     runs-on: ubuntu-latest
 
@@ -23,9 +21,7 @@ jobs:
       GREETING_MESSAGE: "Hello World"
 
     steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'
-    - run: python - c "print(f'{env.GLOBAL_MESSAGE}')"
+    - name: run bash
+     
+    - run: echo ${{env.GLOBAL_MESSAGE}}
       
