@@ -1,4 +1,4 @@
-ame: Build and greet using environment variables
+name: Build and greet using environment variables
 
 on:
   push
