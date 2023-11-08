@@ -1,40 +1,31 @@
-name: Create and Display Text File Artifact
+name: Build and greet using environment variables
 
 on:
   push
+env:
+  GLOBAL_MESSAGE: "This is a global message"
 
 jobs:
-  create-file:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-
-      - name: Run Python script and create text file
-        run: python my_script.py
-
-      - name: Archive text file as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-text-artifact
-          path: output.txt
-
-  display-file:
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - run: python -c "print(f'{env.GLOBAL_MESSAGE}')"
+      
+  greet:
     runs-on: ubuntu-latest
 
-    needs: create-file
+    env:
+      GREETING_MESSAGE: "Hello World"
 
     steps:
-      - name: Download text file artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: my-text-artifact
-
-      - name: Display text file content
-        run: cat output.txt
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - run: python -c "print(f'{env.GLOBAL_MESSAGE}')"
+      
