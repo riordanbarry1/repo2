@@ -1,20 +1,40 @@
-name: Run python script
+name: Create and Display Text File Artifact
 
 on:
   push
 
 jobs:
-  say-hello:
+  create-file:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.9'
 
-      - name: Run Python script
-        run: python my_script.py
+      - name: Run Python script and create text file
+        run: python python_script.py
 
+      - name: Archive text file as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-text-artifact
+          path: output.txt
+
+  display-file:
+    runs-on: ubuntu-latest
+
+    needs: create-file
+
+    steps:
+      - name: Download text file artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-text-artifact
+
+      - name: Display text file content
+        run: cat my-text-artifact/output.txt
